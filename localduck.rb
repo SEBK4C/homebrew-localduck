@@ -2,16 +2,15 @@ class Localduck < Formula
   desc "Local DuckDB database with Crunchbase data for funding analysis"
   homepage "https://github.com/sebk4c/LocalDuck"
   url "https://github.com/sebk4c/LocalDuck/archive/refs/heads/main.tar.gz"
-  version "0.1.0"
-  sha256 "656325ca392b92062933682b14cfbf2e5b7f0d8854f72e72b35793d0056fd750"
+  sha256 "CHANGE_THIS_TO_ACTUAL_SHA256"
   license "MIT"
 
   depends_on "python@3.13"
 
   def install
-    python3 = "python3"
-    system python3, "-m", "pip", "install", *std_pip_args, "--no-deps", "hatchling"
-    system python3, "-m", "pip", "install", *std_pip_args, "."
+    # Install setuptools first, then install the package
+    system "python3", "-m", "pip", "install", "--upgrade", "setuptools", "wheel"
+    system "python3", "-m", "pip", "install", "--prefix=#{prefix}", "."
   end
 
   test do
