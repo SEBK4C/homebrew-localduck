@@ -9,7 +9,9 @@ class Localduck < Formula
   depends_on "python@3.13"
 
   def install
-    system "python3", "-m", "pip", "install", *std_pip_args, "."
+    python3 = "python3"
+    system python3, "-m", "pip", "install", *std_pip_args, "--no-deps", "hatchling"
+    system python3, "-m", "pip", "install", *std_pip_args, "."
   end
 
   test do
