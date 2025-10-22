@@ -6,12 +6,11 @@ class Localduck < Formula
   license "MIT"
 
   depends_on "python@3.13"
+  depends_on "uv"
 
   def install
-    # Install hatchling build backend first
-    system "python3", "-m", "pip", "install", *std_pip_args, "--no-deps", "hatchling"
-    # Install the package with dependencies
-    system "python3", "-m", "pip", "install", *std_pip_args, "."
+    # Use UV to install the package
+    system "uv", "pip", "install", "--system", "."
   end
 
   test do
