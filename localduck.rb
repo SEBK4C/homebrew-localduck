@@ -3,15 +3,17 @@ class Localduck < Formula
   homepage "https://github.com/sebk4c/LocalDuck"
   url "https://github.com/sebk4c/LocalDuck/archive/refs/heads/main.tar.gz"
   version "0.1.0"
-  sha256 "656325ca392b92062933682b14cfbf2e5b7f0d8854f72e72b35793d0056fd750"
+  sha256 "494ef1725a10e69d85cc72b9b286228c817a35b7a13fba7742255235229664df"
   license "MIT"
 
   depends_on "python@3.13"
-  depends_on "uv"
 
   def install
-    # Use UV to install the package
-    system "uv", "pip", "install", "--system", "."
+    # Install setuptools and wheel first (required by pyproject.toml)
+    system "python3", "-m", "pip", "install", "--upgrade", "setuptools", "wheel"
+    
+    # Install the package with Homebrew prefix
+    system "python3", "-m", "pip", "install", "--prefix=#{prefix}", "."
   end
 
   test do
